@@ -33,16 +33,15 @@ def levenshtein_distance(token1, token2):
 
 def main():
     # load vocab in built-in dictionary
-    vocabs = load_vocab_file(file_path=r'./vocab.txt')
+    vocabs = load_vocab(file_path=r'./vocab.txt')
     st.title('Word Correction using Levenshtein Distance')
     word = st.text_input('Word:')
 
     if st.button('Compute'):
         leven_dist = dict()
-
         for vocab in vocabs:
             leven_dist[vocab] = levenshtein_distance(word, vocab)
-            
+
         # sorted by distance
         sorted_dist = dict(
             sorted(leven_dist.items(), key=lambda item: item[1]))
